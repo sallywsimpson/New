@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220040355) do
+ActiveRecord::Schema.define(version: 20140226001716) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -29,11 +29,32 @@ ActiveRecord::Schema.define(version: 20140220040355) do
     t.integer  "category_id"
   end
 
+  create_table "reservations", force: true do |t|
+    t.string   "day"
+    t.string   "time1"
+    t.string   "time2"
+    t.string   "time3"
+    t.string   "time4"
+    t.boolean  "available"
+    t.text     "quantity"
+    t.text     "userID"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "reviews", force: true do |t|
     t.integer  "item_id"
     t.string   "title"
     t.text     "body"
     t.integer  "rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "first_name"
+    t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

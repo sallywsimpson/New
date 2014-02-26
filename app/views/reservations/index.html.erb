@@ -1,0 +1,23 @@
+<div class="page-header">
+
+  <h1>Create a Reservation</h1>
+</div>
+
+<% @reservation_list.each do |reservation| %>
+  <div class="row">
+    <div class="col-md-4">
+  <a href="/reservations/<%= reservation.id %>/show"</a>
+    </div>
+    <div class="col-md-8">
+
+      <h3><a href="/reservations/<%= reservation.id %>/show"><%= reservation.day %></a></h3>
+      <li><a href="/reservations/<%= reservation.id %>/show"><%= reservation.time1 %></a></li>
+      <li><a href="/reservations/<%= reservation.id %>/show"><%= reservation.time2 %></a></li>
+      <li><a href="/reservations/<%= reservation.id %>/show"><%= reservation.time3 %></a></li>
+      <li><a href="/reservations/<%= reservation.id %>/show"><%= reservation.time4 %></a></li>
+
+    </div>
+  </div>
+<% end %>
+
+
