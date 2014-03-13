@@ -1,0 +1,20 @@
+
+
+<% user = User.find_by(:id => session[:user_id]) %>
+
+  <% if user.present? && user.admin == "yes" %>
+
+    <% booking = Booking.all %>
+      <% if booking.count >0 %>
+      <h1>Here are the current reservations:</h1>
+        <% booking.each do |booking| %>
+        <li><%= Reservation.find_by(:id => booking.reservation_id).day %> at <%= Reservation.find_by(:id => booking.reservation_id).time %> for <%= booking.party_size %> seat(s) <!-- | <%= link_to "Cancel", "/bookings/#{booking.id}/delete" %> -->  </li>
+        <% end %>
+      <% else %>
+        <p>You don't have any reservations</p>
+      <% end %>
+
+  <% else %>
+    <h1>You don't have access to this page</h1>
+  <% end %>
+

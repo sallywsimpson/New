@@ -1,13 +1,34 @@
 Week6::Application.routes.draw do
+  # Homepage
+  root 'home#index'
+  # get "/" => 'products#index'
 
-  # get "/" => 'index'
-  get "/" => 'products#index'
+  #Log in pages
+  get "/login" => 'sessions#new'
+  get "/authenticate" => 'sessions#create'
+  get "/logout" => 'sessions#destroy'
 
+
+  get "/users/:user_id/show" => 'users#show'
   get "/users/new" => 'users#new'
+  # get "/users/show" => 'users#show'
   get "/users/create" => 'users#create'
+
+
+
+  get "/about" => 'about#index'
+  get "/locations/results" => "about#results"
+  get "/locations" => 'locations#index'
+
+
+  get "/bookings/create" => 'bookings#create'
+  get "/bookings/:booking_id/delete" => "bookings#destroy"
+
+  get "/bookings" => 'bookings#index'
 
 # Directions - from directions file
 # Directions::Application.routes.draw do
+  get "/sessions/new"
  # get "/search" => "search"
  # get "/location/results" => "location#results"
 # end
@@ -15,13 +36,13 @@ Week6::Application.routes.draw do
 # Reservation related URLs
 
   # CREATE
-  get "/reservations/new" => "reservations#new"
-  get "/reservations/create" => "reservations#create"
+  # get "/reservations/:reservation_day/:reservation_time/new" => "reservations#new"
+  get "/reservations/:reservation_id/new" => 'reservations#new'
 
 
   # READ
   get "/reservations" => 'reservations#index'
-  get "/reservations/:reservation_id/show" => "reservations#show"
+  get "/reservations/:reservation_id/details" => "reservations#details"
 
   # UPDATE
   get "/reservations/:reservation_id/edit" => "reservations#edit"
@@ -54,8 +75,6 @@ Week6::Application.routes.draw do
   get "/products/:product_id/delete" => "products#destroy"
 
 
-  # Review-related URLs
 
-  get "/reviews/create" => 'reviews#create'
 
 end

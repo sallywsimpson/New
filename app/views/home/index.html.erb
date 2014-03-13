@@ -1,22 +1,24 @@
 <div class="page-header">
-  <%= link_to "Add a New Product", "/products/new", :class => "btn btn-md btn-success pull-right" %>
-  <h1>Product Catalog</h1>
+
+  <h1>Welcome to Pintxo Pop</h1>
+  <p>Pintxo Pop is a unique tapas restaurant.  We open for a week at a time and move locations for each opening.</p>
+  <p>We are food lovers and after a recent trip to Spain we fell in love with tapas.  After returning back to Wales, we found it hard to find great tapas. So we created this restaurant.  We hope you try it out for yourselves!</p>
 </div>
 
-<% @product_list.each do |product| %>
-  <div class="row">
-    <div class="col-md-4">
-      <a href="/products/<%= product.id %>/show"><img width="200" src="<%= product.image_url %>"></a>
-    </div>
-    <div class="col-md-8">
-      <h3><a href="/products/<%= product.id %>/show"><%= product.name %></a></h3>
-      <p class="lead"><%= number_to_currency(product.price) %></p>
-      <p><%= product.description %></p>
+<h2>How it works</h2>
+<li>Sign up for an account</li>
+<li>Create a reservation</li>
+<!-- <li>Submit payment of $40/per person to confirm your reservation</li> -->
+<li>Come to our restaurant and enjoy your meal!</li>
+<li>We will email you notices about future restaurant pop-ups</li>
 
-      <p class="pull-right">
-      <%= link_to "Edit", "/products/#{product.id}/edit" %> |
-      <%= link_to "Delete", "/products/#{product.id}/delete" %>
-</p>
-    </div>
-  </div>
-<% end %>
+<p></p>
+<p></p>
+<% user = User.find_by(:id => session[:user_id]) %>
+<% if user.present? %>
+  <%= link_to "Create a reservation now >", "/reservations", :class => "btn btn-md btn-success" %>
+   <% else  %>
+  <%= link_to "Get Started", "/users/new", :class => "btn btn-md btn-success" %>
+
+<% end  %>
+

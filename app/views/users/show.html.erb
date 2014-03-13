@@ -1,0 +1,26 @@
+<h1>My Profile</h1>
+  <% user = User.find_by(:id => session[:user_id]) %>
+
+    <% if user.present? %>
+    <li>Name: <%= user.first_name %></li>
+    <li>Email: <%= user.email %></li>
+    <li>Password: <%= user.password %></li>
+    <% if user.admin == "yes" %>
+    <li>Admin: <%= user.admin %></li>
+    <% end %>
+
+<% booking = Booking.where(:user_id => session[:user_id]) %>
+<h2>My Reservations</h2>
+<% if booking.count >0 %>
+<% booking.each do |booking| %>
+
+
+    <li><%= Reservation.find_by(:id => booking.reservation_id).day %> at <%= Reservation.find_by(:id => booking.reservation_id).time %> for <%= booking.party_size %> seat(s) | <%= link_to "Cancel", "/bookings/#{booking.id}/delete" %>  </li>
+
+   <% end %>
+<% else %>
+<p>You don't have any reservations</p>
+   <% end %>
+     <% end %>
+
+

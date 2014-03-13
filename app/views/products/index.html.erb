@@ -1,22 +1,42 @@
 <div class="page-header">
-  <%= link_to "Add a New Product", "/products/new", :class => "btn btn-md btn-success pull-right" %>
-  <h1>Product Catalog</h1>
+<h1>Menu for this Week</h1>
 </div>
 
-<% @product_list.each do |product| %>
-  <div class="row">
-    <div class="col-md-4">
-      <a href="/products/<%= product.id %>/show"><img width="200" src="<%= product.image_url %>"></a>
-    </div>
-    <div class="col-md-8">
-      <h3><a href="/products/<%= product.id %>/show"><%= product.name %></a></h3>
-      <p class="lead"><%= number_to_currency(product.price) %></p>
-      <p><%= product.description %></p>
 
-      <p class="pull-right">
-      <%= link_to "Edit", "/products/#{product.id}/edit" %> |
-      <%= link_to "Delete", "/products/#{product.id}/delete" %>
-</p>
-    </div>
-  </div>
-<% end %>
+<% user = User.find_by(:id => session[:user_id]) %>
+  <% if user.present? && user.admin == "yes" %>
+      <%= link_to "Add a New Product", "/products/new", :class => "btn btn-md btn-success pull-right" %>
+      <% @product_list.each do |product| %>
+        <div class="row">
+          <div class="col-md-4">
+            <a href="/products/<%= product.id %>/show"><img width="200" src="<%= product.image_url %>"></a>
+          </div>
+
+          <div class="col-md-8">
+            <h3><a href="/products/<%= product.id %>/show"><%= product.name %></a></h3>
+            <p class="lead"><%= number_to_currency(product.price) %></p>
+            <p><%= product.description %></p>
+            <p class="pull-right">
+            <%= link_to "Edit", "/products/#{product.id}/edit" %> |
+            <%= link_to "Delete", "/products/#{product.id}/delete" %> </p>
+          </div>
+        </div>
+      <% end %>
+
+  <% else %>
+
+      <% @product_list.each do |product| %>
+        <div class="row">
+         <div class="col-md-4">
+            <a href="/products/<%= product.id %>/show"><img width="200" src="<%= product.image_url %>"></a>
+         </div>
+
+         <div class="col-md-8">
+            <h3><a href="/products/<%= product.id %>/show"><%= product.name %></a></h3>
+            <p class="lead"><%= number_to_currency(product.price) %></p>
+            <p><%= product.description %></p>
+         </div>
+        </div>
+      <% end %>
+      <% end %>
+

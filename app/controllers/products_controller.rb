@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
   def show
     @product = Item.find_by(:id => params[:product_id])
     @reviews = Review.where(:item_id => @product.id)
+    @users = User.find_by(:id => params[:user_id])
   end
 
   def destroy

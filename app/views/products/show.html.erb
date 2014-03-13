@@ -20,10 +20,10 @@
 
 <form action="/reviews/create">
   <div class="form-group">
-    Item ID: <input name="item_id" value=<%= @product.id %>>
+    <input name="item_id" value=<%= @product.id %> type="hidden">
   </div>
   <div class="form-group">
-    <input name="title" type="text" class="form-control input-md" placeholder="Title">
+    <input name="title" type="text" class="form-control input-md" placeholder="Subjet">
   </div>
   <div class="form-group">
     <select name="rating">

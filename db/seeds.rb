@@ -1,3 +1,13 @@
+User.destroy_all
+["Jeff", "Brian"].each do |name|
+  u = User.new
+  u.first_name = name
+  u.password = "hockey"
+  u.admin = "yes"
+  u.save
+end
+
+
 product_catalog = [ { :name => "Garlic Shrimp",
                         :price => 11,
                         :image_url => 'http://graphics8.nytimes.com/images/2011/09/29/travel/29globe-prague-tapas/29globe-prague-tapas-blog480.jpg',
@@ -39,33 +49,24 @@ end
 puts "Sweet!  Or is that savory?  In either case, there are now #{Item.count} recipes, or products, in your menu."
 
 
-reservation_catalog = [ { :day => "Monday",
-                        :time1 => "6:00PM",
-                        :time2 => "7:00PM",
-                        :time3 => "8:00PM",
-                        :time4 => "9:00PM",
-
-                      },
-                      { :day => "Tuesday",
-                        :time1 => "6:00PM",
-                        :time2 => "7:00PM",
-                        :time3 => "8:00PM",
-                        :time4 => "9:00PM",
-                      },
-                    ]
-
-
-Reservations.destroy_all
-reservation_catalog.each do |reservation_info|
-  r = Reservations.new
-  r.day = reservation_info[:day]
-  r.time1 = reservation_info[:time1]
-  r.time2 = reservation_info[:time2]
-  r.time3 = reservation_info[:time3]
-  r.time4 = reservation_info[:time4]
-  # p.image_url = product_info[:image_url]
-  # p.description = product_info[:description]
+Reservation.destroy_all
+["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day|
+  r = Reservation.new
+  r.day = day
+  r.time = "6PM"
+  r.save
+end
+["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day|
+  r = Reservation.new
+  r.day = day
+  r.time = "7PM"
+  r.save
+end
+["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day|
+  r = Reservation.new
+  r.day = day
+  r.time = "8PM"
   r.save
 end
 
-puts "hey"
+puts "You've loaded  #{Reservation.count} reservations"
